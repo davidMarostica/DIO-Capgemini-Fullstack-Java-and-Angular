@@ -14,39 +14,40 @@ public class ListaDuplamenteEncadeada<T> {
 
     }
 
-    public T get(int index){
+    public T get(int index) {
         return this.getNo(index).getConteudo();
     }
-    
-    public void add(T elemento){
+
+    public void add(T elemento) {
         NoDuplo<T> novoNo = new NoDuplo<>(elemento);
         novoNo.setNoPoximo(null);
         novoNo.setNoPrevio(ultimoNo);
-        if(primeiroNo == null){
+        if (primeiroNo == null) {
             primeiroNo = novoNo;
 
         }
-        if (ultimoNo != null){
+        if (ultimoNo != null) {
             ultimoNo.setNoPoximo(novoNo);
 
         }
         ultimoNo = novoNo;
-        tamanhoLista ++;
-        
+        tamanhoLista++;
+
     }
-    public void remove(int index){
-        if (index == 0 ){
+
+    public void remove(int index) {
+        if (index == 0) {
             primeiroNo = primeiroNo.getNoPoximo();
-            if (primeiroNo != null){
+            if (primeiroNo != null) {
                 primeiroNo.setNoPrevio(null);
             }
-        }else {
+        } else {
             NoDuplo<T> noAuxiliar = getNo(index);
             noAuxiliar.getNoPrevio().setNoProxim(noAuxiliar.getNoPoximo());
-            if(noAuxiliar != ultimoNo){
+            if (noAuxiliar != ultimoNo) {
                 noAuxiliar.getNoPoximo().setNoPrevio(noAuxiliar.getNoPrevio());
 
-            }else{
+            } else {
 
                 ultimoNo = noAuxiliar;
 
@@ -58,12 +59,10 @@ public class ListaDuplamenteEncadeada<T> {
     }
 
 
-
-
     private NoDuplo<T> getNo(int index) {
         NoDuplo<T> noAuxiliar = primeiroNo;
 
-        for (int i = 0; (i < index) && (noAuxiliar != null);  i++){
+        for (int i = 0; (i < index) && (noAuxiliar != null); i++) {
             noAuxiliar = noAuxiliar.getNoPoximo();
 
 
@@ -76,4 +75,17 @@ public class ListaDuplamenteEncadeada<T> {
         return this.tamanhoLista; // corrigido
     }
 
+    @Override
+    public String toString() {
+        String strRetorno = "";
+        NoDuplo<T> noAuxiliar = primeiroNo;
+        for (int i = 0; i < size(); i++) {
+            strRetorno += "[No{conterudo=" + noAuxiliar.getConteudo() + " }]---->";
+            noAuxiliar = noAuxiliar.getNoPoximo();
+
+        }
+        strRetorno += "null";
+        return strRetorno;
+
+    }
 }
