@@ -2,72 +2,56 @@ package one.digitalinnovation;
 
 public class Fila {
 
-    private No refNoEntradaFila;
+    private No refNoEntradaFila = null;  // último elemento inserido
+    private No refNoSaidaFila = null;    // primeiro elemento da fila
 
-    public Fila() {
-        this.refNoEntradaFila = null;
-    }
-
-    public void enqueue(No novoNo){
-        novoNo.setRefNo(refNoEntradaFila);
-        refNoEntradaFila = novoNo;
-    }
-
-    public No first(){
-        if(!this.isEmpty()){
-            No primeiroNo = refNoEntradaFila;
-            while (true){
-                if(primeiroNo.getRefNo() != null){
-                    primeiroNo = primeiroNo.getRefNo();
-                }else{
-                    break;
-                }
-            }
-            return primeiroNo;
+    // Adiciona elemento no final da fila
+    public void enqueue(Object obj) {
+        No novoNo = new No(obj);
+        if (isEmpty()) {
+            refNoEntradaFila = novoNo;
+            refNoSaidaFila = novoNo;
+        } else {
+            refNoEntradaFila.setRefNo(novoNo);
+            refNoEntradaFila = novoNo;
         }
-        return null;
     }
 
-    public No dequeue(){
-        if(!this.isEmpty()){
-            No primeiroNo = refNoEntradaFila;
-            No noAuxiliar = refNoEntradaFila;
-            while (true){
-                if(primeiroNo.getRefNo() != null){
-                    noAuxiliar = primeiroNo;
-                    primeiroNo = primeiroNo.getRefNo();
-                }else{
-                    noAuxiliar.setRefNo(null);
-                    break;
-                }
-            }
-            return primeiroNo;
+    // Remove e retorna o primeiro elemento da fila
+    public Object dequeue() {
+        if (isEmpty()) {
+            return null;
         }
-        return null;
+        Object obj = refNoSaidaFila.getObject();
+        refNoSaidaFila = refNoSaidaFila.getRefNo();
+        if (refNoSaidaFila == null) {
+            refNoEntradaFila = null; // fila ficou vazia
+        }
+        return obj;
     }
 
-    public boolean isEmpty(){
-        return refNoEntradaFila == null? true : false;
+    // Retorna o primeiro elemento sem remover
+    public Object first() {
+        if (isEmpty()) {
+            return null;
+        }
+        return refNoSaidaFila.getObject();
+    }
+
+    public boolean isEmpty() {
+        return refNoSaidaFila == null;
     }
 
     @Override
     public String toString() {
-        String stringRetorno = "";
-        No noAuxiliar = refNoEntradaFila;
+        StringBuilder sb = new StringBuilder();
+        No noAuxiliar = refNoSaidaFila;
 
-        if(refNoEntradaFila != null){
-            while (true){
-                stringRetorno += "[No{objeto=" + noAuxiliar.getObject() + "}]--->";
-                if(noAuxiliar.getRefNo() != null){
-                    noAuxiliar = noAuxiliar.getRefNo();
-                }else{
-                    stringRetorno += "null";
-                    break;
-                }
-            }
-        }else{
-            stringRetorno = "null";
+        while (noAuxiliar != null) {
+            sb.append("[No{dado=").append(noAuxiliar.getObject()).append("}]--->");
+            noAuxiliar = noAuxiliar.getRefNo();
         }
-        return stringRetorno;
+        sb.append("null");
+        return sb.toString();
     }
 }

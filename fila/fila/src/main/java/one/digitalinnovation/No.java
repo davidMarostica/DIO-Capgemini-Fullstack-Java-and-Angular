@@ -1,15 +1,13 @@
 package one.digitalinnovation;
 
 public class No {
-
     private Object object;
-    private No refNo;
+    private No refNo = null;
 
-    public No(){
+    public No() {
     }
 
-    public No(Object object){
-        this.refNo = null;
+    public No(Object object) {
         this.object = object;
     }
 
@@ -32,7 +30,7 @@ public class No {
     @Override
     public String toString() {
         return "No{" +
-                "object=" + object +
+                "dado=" + object +
                 '}';
     }
 }
