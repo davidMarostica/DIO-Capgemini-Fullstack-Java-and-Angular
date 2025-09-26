@@ -34,35 +34,31 @@ public class ListaDuplamenteEncadeada<T> {
         tamanhoLista ++;
         
     }
-<<<<<<< HEAD
-=======
-
-    public void add(int index, T elemento){
-        NoDuplo<T> noAuxiliar = getNo(index);
-        NoDuplo<T> novoNo = new NoDuplo<>(elemento);
-        novoNo.setNoPoximo(noAuxiliar);
-
-        if(novoNo.getNoPoximo() !=null){
-            novoNo.setNoPrevio(noAuxiliar.getNoPrevio());
-            novoNo.getNoPoximo().setNoPrevio(novoNo);
-
+    public void remove(int index){
+        if (index == 0 ){
+            primeiroNo = primeiroNo.getNoPoximo();
+            if (primeiroNo != null){
+                primeiroNo.setNoPrevio(null);
+            }
         }else {
-            novoNo.setNoPrevio(ultimoNo);
-            ultimoNo = novoNo;
+            NoDuplo<T> noAuxiliar = getNo(index);
+            noAuxiliar.getNoPrevio().setNoProxim(noAuxiliar.getNoPoximo());
+            if(noAuxiliar != ultimoNo){
+                noAuxiliar.getNoPoximo().setNoPrevio(noAuxiliar.getNoPrevio());
 
-        }
-        if(index == 0){
-            primeiroNo = novoNo;
-        }else {
-            novoNo.getNoPrevio().setNoPoximo(novoNo);
+            }else{
 
+                ultimoNo = noAuxiliar;
+
+            }
         }
 
-        tamanhoLista ++;
-
+        this.tamanhoLista--;
 
     }
->>>>>>> lista-circular
+
+
+
 
     private NoDuplo<T> getNo(int index) {
         NoDuplo<T> noAuxiliar = primeiroNo;

@@ -38,8 +38,9 @@ public class NoDuplo <T>{
 
     @Override
     public String toString() {
-        return "NoDuplo{" +
-                "conteudo=" + conteudo +
-                '}';
+        return null;
+    }
+
+    public void setNoProxim(NoDuplo<T> noPoximo) {
     }
 }
