@@ -16,11 +16,4 @@ O projeto utiliza o **Gradle Wrapper** para gerenciar dependências. A dependên
 ### Instalação
 Com os pré-requisitos instalados, basta baixar esse projeto no seu IDE (através do comando "git clone") e seguir os passos que estão no arquivo "DatabaseInstructions"  para instanciar os bancos de dados, tabelas e alguns registros para teste.
 
-## Executar
-Basta rodar a função main em um dos seguintes arquivos:
-- ConnectionJDBC.java (https://github.com/danielkv7/jdbc-basico/blob/master/src/main/java/part2/ConnectionJDBC.java)
-
-- QueriesExecution.java (https://github.com/danielkv7/jdbc-basico/blob/master/src/main/java/part3/QueriesExecution.java)
-
-- PowerPoint (Windows)
 
