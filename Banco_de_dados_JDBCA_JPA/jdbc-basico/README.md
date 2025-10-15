@@ -23,4 +23,4 @@ Basta rodar a função main em um dos seguintes arquivos:
 - QueriesExecution.java (https://github.com/danielkv7/jdbc-basico/blob/master/src/main/java/part3/QueriesExecution.java)
 
 - PowerPoint (Windows)
-https://github.com/danielkv7/digital-innovation-one/blob/master/Aula_JDBC_basico/Template%20padr%C3%A3o%20de%20apresenta%C3%A7%C3%A3o.pptx
+
