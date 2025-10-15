@@ -1,17 +1,35 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-group 'org.digitalinnovationone.courses'
-version '1.0-SNAPSHOT'
+group = 'org.digitalinnovationone.courses'
+version = '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // Driver JDBC para MySQL - CORRIGIDO para as coordenadas modernas do Maven
+    implementation 'com.mysql:mysql-connector-j:8.1.0'
+
+    // JUnit 4 para testes
+    testImplementation 'junit:junit:4.13.2'
+}
+
+// Configuração do plugin application
+application {
+    // Classe principal do seu projeto
+    mainClass = 'part2.ConnectionJDBC'
+}
+
+// Para garantir que o Gradle use JUnit corretamente
+test {
+    useJUnit()
 }
